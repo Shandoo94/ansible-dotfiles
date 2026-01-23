@@ -1,0 +1,13 @@
+theme_config_source_dir: "/usr/local/share/theme"
+theme_name: everforest
+theme_kb_layout: us
+theme_kb_variant: intl
+theme_font_style:
+  package: "ttf-noto-nerd"
+  mono: "Noto SansM Nerd Font Mono"
+  serif: "Noto Serif Nerd Font"
+  sansSerif: "Noto Sans Nerd Font"
+theme_font_size_terminal: 12
+theme_font_size_apps: 12
+theme_font_size_popups: 12
+theme_font_size_desktop: 12
