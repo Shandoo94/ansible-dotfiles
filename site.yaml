@@ -1,0 +1,5 @@
+- name: Configure system
+  hosts: localhost
+  connection: local
+  roles:
+    - theme
