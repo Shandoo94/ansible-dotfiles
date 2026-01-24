@@ -1,0 +1,6 @@
+- name: Enable blueman applet
+  ansible.builtin.systemd_service:
+    name: blueman-applet.service
+    enabled: true
+    state: restarted
+  tags: [blueman, systemd]
