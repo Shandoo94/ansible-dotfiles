@@ -1,1 +1,1 @@
-waybar_source_dir: "~/.config/waybar"
+waybar_source_dir: "{{ ansible_user_dir }}/.config/waybar"

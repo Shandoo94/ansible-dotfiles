@@ -1,1 +1,1 @@
-btop_source_dir: "~/.config/btop"
+btop_source_dir: "{{ ansible_user_dir }}/.config/btop"
