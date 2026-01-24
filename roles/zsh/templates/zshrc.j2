@@ -35,6 +35,7 @@ compinit
 source <(fzf --zsh)
 zinit light Aloxaf/fzf-tab
 eval "$(zoxide init zsh)"
+eval "$({{ zsh_omp_bin_dir }}/oh-my-posh init zsh --config {{ zsh_omp_source_dir }}/config.json)"
 
 # Aliases
 alias grim-shot='grim -g "$(slurp)" - | swappy -f -'

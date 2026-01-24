@@ -1,0 +1,56 @@
+blocks:
+  - alignment: left
+    newline: true
+    segments:
+      - foreground: p:foreground
+        style: plain
+        template: <p:accent>┏[</>{{ if .SSHSession }} {{end}}{{.UserName}}@{{.HostName}}<p:accent>]</>
+        type: session
+      - foreground: p:accent
+        properties:
+          branch_icon: ' '
+          fetch_stash_count: true
+          fetch_status: true
+        style: plain
+        template: --[<magenta>{{ .HEAD }}{{if or (.Working.Changed) (.Staging.Changed)}}*{{end}}</>
+          <cyan>{{if gt .Behind 0}}{{end}}{{if gt .Ahead 0}}{{end}}</>]
+        type: git
+      - foreground: p:foreground
+        style: plain
+        template: '<p:accent>--[</>{{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}<p:accent>]</>'
+        type: kubectl
+      - foreground: p:foreground
+        style: plain
+        template: <p:accent>[</><p:accent>]</>
+        type: root
+    type: prompt
+  - alignment: left
+    newline: true
+    segments:
+      - foreground: p:foreground
+        properties:
+          style: full
+        style: plain
+        template: <p:accent>┖[</>{{ .Path }}<p:accent>]</>
+        type: path
+    type: prompt
+  - alignment: left
+    newline: true
+    segments:
+      - foreground_templates:
+          - '{{if gt .Code 0}}p:error{{end}}'
+          - '{{if eq .Code 0}}green{{end}}'
+        style: plain
+        template: '❯❯ '
+        type: text
+    type: prompt
+palette:
+  accent: '#6a9eb5'
+  alt_foreground: '#7e5f83'
+  error: '#877bb6'
+  foreground: '#eed5d9'
+transient_prompt:
+  foreground_templates:
+    - '{{if gt .Code 0}}p:error{{end}}'
+    - '{{if eq .Code 0}}green{{end}}'
+  template: '❯❯ '

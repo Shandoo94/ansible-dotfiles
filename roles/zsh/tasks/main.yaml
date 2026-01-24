@@ -69,3 +69,12 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
   tags: [zsh, oh-my-posh]
+
+- name: Copy oh-my-posh config
+  ansible.builtin.copy:
+    src: omp_config.yaml
+    dest: "{{ zsh_omp_source_dir }}/config.yaml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  tags: [zsh, oh-my-posh, config]
