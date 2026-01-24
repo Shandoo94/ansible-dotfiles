@@ -1,5 +1,17 @@
 - name: Configure system
   hosts: localhost
   connection: local
+  gather_facts: true
   roles:
     - theme
+    - bat
+    - btop
+    - dunst
+    - git
+    - hyprland
+    - k9s
+    - kitty
+    - rofi
+    - waybar
+    - yazi
+    - zsh
