@@ -2,8 +2,8 @@
   ansible.builtin.template:
     src: "{{ item }}.j2"
     dest: "{{ zsh_source_dir }}/.{{ item }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ ansible_facts['ansible_user_id'] }}"
+    group: "{{ ansible_facts['ansible_user_id'] }}"
     mode: "0600"
   loop:
     - zshenv
@@ -35,8 +35,8 @@
   ansible.builtin.file:
     path: "{{ zsh_omp_bin_dir }}"
     state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ ansible_facts['ansible_user_id'] }}"
+    group: "{{ ansible_facts['ansible_user_id'] }}"
     mode: "0755"
   tags: [zsh, oh-my-posh]
 
@@ -66,15 +66,15 @@
     dest: "{{ zsh_omp_bin_dir }}/oh-my-posh"
     checksum: "sha256:{{ zsh_omp_checksum }}"
     mode: "0755"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ ansible_facts['ansible_user_id'] }}"
+    group: "{{ ansible_facts['ansible_user_id'] }}"
   tags: [zsh, oh-my-posh]
 
 - name: Copy oh-my-posh config
   ansible.builtin.copy:
     src: omp_config.yaml
     dest: "{{ zsh_omp_source_dir }}/config.yaml"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ ansible_facts['ansible_user_id'] }}"
+    group: "{{ ansible_facts['ansible_user_id'] }}"
     mode: "0600"
   tags: [zsh, oh-my-posh, config]

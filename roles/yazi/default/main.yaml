@@ -1,1 +1,1 @@
-yazi_source_dir: "{{ ansible_user_dir }}/.config/yazi"
+yazi_source_dir: "{{ ansible_facts['ansible_user_dir'] }}/.config/yazi"

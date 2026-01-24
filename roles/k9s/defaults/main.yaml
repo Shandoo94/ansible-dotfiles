@@ -1,1 +1,1 @@
-k9s_source_dir: "{{ ansible_user_dir }}/.config/k9s"
+k9s_source_dir: "{{ ansible_facts['ansible_user_dir'] }}/.config/k9s"

@@ -2,8 +2,8 @@
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ git_source_dir }}/{{ item }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ ansible_facts['ansible_user_id'] }}"
+    group: "{{ ansible_facts['ansible_user_id'] }}"
     mode: "0600"
   loop:
     - config

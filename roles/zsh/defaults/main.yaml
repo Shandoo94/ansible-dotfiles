@@ -1,4 +1,4 @@
-zsh_source_dir: "{{ ansible_user_dir }}/.config/zsh"
-zsh_omp_bin_dir: "{{ ansible_user_dir }}/.local/bin"
-zsh_omp_source_dir: "{{ ansible_user_dir }}/.config/oh-my-posh"
+zsh_source_dir: "{{ ansible_facts['ansible_user_dir'] }}/.config/zsh"
+zsh_omp_bin_dir: "{{ ansible_facts['ansible_user_dir'] }}/.local/bin"
+zsh_omp_source_dir: "{{ ansible_facts['ansible_user_dir'] }}/.config/oh-my-posh"
 zsh_omp_release_version: "v29.1.0"
