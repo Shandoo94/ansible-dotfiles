@@ -1,0 +1,45 @@
+[
+  {
+    "include": [
+      "{{ desktop_hypr_source_dir }}/waybar-modules.jsonc",
+      "{{ desktop_hypr_source_dir }}/waybar-modules-workspaces.jsonc",
+      "{{ desktop_hypr_source_dir }}/waybar-modules-custom.jsonc",
+      "{{ desktop_hypr_source_dir }}/waybar-modules-groups.jsonc"
+    ],
+    "layer": "top",
+    "position": "top",
+    "height": 20,
+    "spacing": 4
+    "modules-center": [
+      "custom/separator#blank_2",
+      "hyprland/workspaces",
+      "custom/separator#blank_2"
+    ],
+    "modules-left": [
+      "group/group-power",
+      "custom/separator#line",
+      "tray",
+      "custom/separator#line",
+      "bluetooth",
+      "custom/separator#line",
+      "network",
+      "custom/separator#blank_2"
+    ],
+    "modules-right": [
+      "custom/separator#blank_2",
+      "idle_inhibitor",
+      "custom/separator#line",
+      "mpris",
+      "wireplumber",
+      "custom/separator#line",
+      "memory",
+      "custom/separator#line",
+      "cpu",
+      "custom/separator#line",
+      "battery",
+      "custom/separator#line",
+      "clock",
+      "custom/separator#line"
+    ],
+  }
+]

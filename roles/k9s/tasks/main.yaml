@@ -1,0 +1,17 @@
+- name: Render template configurations
+  ansible.builtin.template:
+    src: system.yaml.j2
+    dest: "{{ k9s_source_dir }}/skins/system.yaml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  tags: [k9s, config]
+
+- name: Copy file configurations
+  ansible.builtin.copy:
+    src: config.yaml
+    dest: "{{ k9s_source_dir }}/config.yaml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  tags: [k9s, config]

@@ -1,0 +1,114 @@
+@define-color base00 {{ theme_data.colors.base00 }};
+@define-color base01 {{ theme_data.colors.base01 }};
+@define-color base02 {{ theme_data.colors.base02 }};
+@define-color base03 {{ theme_data.colors.base03 }};
+@define-color base04 {{ theme_data.colors.base04 }};
+@define-color base05 {{ theme_data.colors.base05 }};
+@define-color base06 {{ theme_data.colors.base06 }};
+@define-color base07 {{ theme_data.colors.base07 }};
+@define-color base08 {{ theme_data.colors.base08 }};
+@define-color base09 {{ theme_data.colors.base09 }};
+@define-color base0A {{ theme_data.colors.base0A }};
+@define-color base0B {{ theme_data.colors.base0B }};
+@define-color base0C {{ theme_data.colors.base0C }};
+@define-color base0D {{ theme_data.colors.base0D }};
+@define-color base0E {{ theme_data.colors.base0E }};
+@define-color base0F {{ theme_data.colors.base0F }};
+
+* {
+  font-size:15px;
+  font-family: {{ theme_data.font.style.sansSerif }};
+  color: @base05;
+}
+
+window#waybar{
+  background: transparent;
+}
+
+.modules-left {
+  padding: 0px 2px 0px 2px;
+  margin: 5 0 5 5;
+  border-radius: 5px 5px 5px 5px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: @base01;
+  background: @base00;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+}
+
+.modules-center {
+  padding: 0px;
+  margin: 5 0 5 0;
+  border-radius: 5px 5px 5px 5px;;
+  border-style: solid;;
+  border-width: 2px;
+  border-color: @base01;
+  background: @base00;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+}
+
+.modules-right {
+  padding: 0px 7px 0px 7px;
+  margin: 5 5 5 0;
+  border-radius: 5px 5px 5px 5px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: @base01;
+  background: @base00;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, .6);
+}
+
+#workspaces button {
+  border-radius: 10px;
+  box-shadow: none;
+  margin: 2px 5px 2px;
+  padding: 0px 2px;
+  color: @base04;
+  transition: ease-in-out;
+}
+
+#workspaces button:hover {
+  background: @base02;
+  color: @base07;
+}
+
+#workspaces button.active {
+  background: @base03;
+  color: @base08;
+}
+
+#workspaces button.focused {
+  color: @base0A;
+}
+
+#workspaces button.visible {
+  color: @base05;
+}
+
+#workspaces button.urgent {
+  color: @base09;
+}
+
+#custom-separator{
+  font-size:16px;
+  color: @base03;
+}
+
+#battery.charging, #battery.plugged {
+  color: @base0C;
+}
+
+#custom-os {
+  font-size: 20px;
+  color: @accent_fg_color;
+  background: @accent_bg_color;
+  border-radius: 10px;
+  padding: 0 3 0 7;
+}
+
+#custom-power
+#custom-reboot
+#custom-lock
+#custom-power {
+  padding: 0 7 0 3;
+}

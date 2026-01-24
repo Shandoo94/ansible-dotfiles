@@ -1,0 +1,17 @@
+- name: Render template configurations
+  ansible.builtin.template:
+    src: system.yaml.j2
+    dest: "{{ btop_source_dir }}/themes/system.theme"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  tags: [btop, config]
+
+- name: Copy file configurations
+  ansible.builtin.copy:
+    src: btop.conf
+    dest: "{{ btop_source_dir }}/btop.conf"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  tags: [btop, config]

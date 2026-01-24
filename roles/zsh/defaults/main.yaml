@@ -1,0 +1,3 @@
+zsh_source_dir: "~/.config/zsh"
+zsh_omp_bin_dir: "{{ '~/.local/bin' | expanduser }}"
+zsh_omp_release_version: "v29.1.0"

@@ -1,0 +1,58 @@
+# template based on tinted theming conventions
+
+# The basic colors
+background #{{ theme_data.colors.base00 }}
+foreground #{{ theme_data.colors.base05 }}
+selection_background #{{ theme_data.colors.base05 }}
+selection_foreground #{{ theme_data.colors.base02 }}
+
+# Cursor colors
+cursor #{{ theme_data.colors.base05 }}
+cursor_text_color #{{ theme_data.colors.base00 }}
+
+# URL underline color when hovering with mouse
+url_color #{{ theme_data.colors.base04 }}
+
+# Kitty window border colors
+active_border_color #{{ theme_data.colors.base03 }}
+inactive_border_color #{{ theme_data.colors.base01 }}
+
+# OS Window titlebar colors
+wayland_titlebar_color #{{ theme_data.colors.base00 }}
+macos_titlebar_color #{{ theme_data.colors.base00 }}
+
+# Tab bar colors
+active_tab_background #{{ theme_data.colors.base00 }}
+active_tab_foreground #{{ theme_data.colors.base05 }}
+inactive_tab_background #{{ theme_data.colors.base01 }}
+inactive_tab_foreground #{{ theme_data.colors.base04 }}
+tab_bar_background #{{ theme_data.colors.base01 }}
+
+# The 16 terminal colors
+# normal
+color0 #{{ theme_data.colors.base00 }}
+color1 #{{ theme_data.colors.base08 }}
+color2 #{{ theme_data.colors.base0B }}
+color3 #{{ theme_data.colors.base0A }}
+color4 #{{ theme_data.colors.base0D }}
+color5 #{{ theme_data.colors.base0E }}
+color6 #{{ theme_data.colors.base0C }}
+color7 #{{ theme_data.colors.base05 }}
+
+# bright
+color8 #{{ theme_data.colors.base03 }}
+color9 #{{ theme_data.colors.base12 | default(theme_data.colors.base08) }}
+color10 #{{ theme_data.colors.base14 | default(theme_data.colors.base0B) }}
+color11 #{{ theme_data.colors.base13 | default(theme_data.colors.base0A) }}
+color12 #{{ theme_data.colors.base16 | default(theme_data.colors.base0D) }}
+color13 #{{ theme_data.colors.base17 | default(theme_data.colors.base0E) }}
+color14 #{{ theme_data.colors.base15 | default(theme_data.colors.base0C) }}
+color15 #{{ theme_data.colors.base07 }}
+
+# extended base16 colors
+color16 #{{ theme_data.colors.base09 }}
+color17 #{{ theme_data.colors.base0F }}
+color18 #{{ theme_data.colors.base01 }}
+color19 #{{ theme_data.colors.base02 }}
+color20 #{{ theme_data.colors.base04 }}
+color21 #{{ theme_data.colors.base06 }}

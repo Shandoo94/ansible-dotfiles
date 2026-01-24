@@ -1,0 +1,25 @@
+- name: Render template configurations
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "{{ waybar_source_dir }}/{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  loop:
+    - config
+    - style.css
+  tags: [waybar, config]
+
+- name: Copy file configurations
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ waybar_source_dir }}/{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  loop:
+    - waybar-modules-custom.jsonc
+    - waybar-modules-groups.jsonc
+    - waybar-modules.jsonc
+    - waybar-modules-workspaces.jsonc
+  tags: [waybar, config]

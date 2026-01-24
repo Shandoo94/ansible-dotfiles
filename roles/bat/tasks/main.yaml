@@ -1,0 +1,17 @@
+- name: Render template configurations
+  ansible.builtin.template:
+    src: system.tmTheme.j2
+    dest: "{{ bat_source_dir }}/themes/system.tmTheme"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  tags: [bat, config]
+
+- name: Copy file configurations
+  ansible.builtin.copy:
+    src: config
+    dest: "{{ k9s_source_dir }}/config"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  tags: [bat, config]

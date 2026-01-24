@@ -1,0 +1,71 @@
+- name: Render template configurations
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "{{ zsh_source_dir }}/.{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  loop:
+    - zshenv
+    - zshrc
+  tags: [zsh, config]
+
+- name: Determine oh-my-posh target platform
+  ansible.builtin.set_fact:
+    zsh_omp_platform: "{{ {'Linux': 'linux', 'Darwin': 'darwin', 'FreeBSD': 'freebsd'}.get(ansible_system, ansible_system | lower) }}"
+    zsh_omp_arch: "{{ {'x86_64': 'amd64', 'amd64': 'amd64', 'aarch64': 'arm64', 'arm64': 'arm64', 'armv7l': 'arm', 'armv7': 'arm', 'armv6l': 'arm', 'armv6': 'arm', 'armhf': 'arm'}.get(ansible_architecture, ansible_architecture | lower) }}"
+  tags: [zsh, oh-my-posh]
+
+- name: Validate oh-my-posh target support
+  ansible.builtin.assert:
+    that:
+      - zsh_omp_platform in ['linux', 'darwin', 'freebsd']
+      - zsh_omp_arch in ['amd64', 'arm', 'arm64']
+    fail_msg: "Unsupported platform {{ ansible_system }} or architecture {{ ansible_architecture }} for oh-my-posh"
+  tags: [zsh, oh-my-posh]
+
+- name: Define oh-my-posh asset details
+  ansible.builtin.set_fact:
+    zsh_omp_asset_filename: "posh-{{ zsh_omp_platform }}-{{ zsh_omp_arch }}"
+    zsh_omp_checksums_url: "https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/{{ zsh_omp_release_version }}/checksums.txt"
+    zsh_omp_asset_url: "https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/{{ zsh_omp_release_version }}/posh-{{ zsh_omp_platform }}-{{ zsh_omp_arch }}"
+  tags: [zsh, oh-my-posh]
+
+- name: Ensure oh-my-posh binary directory exists
+  ansible.builtin.file:
+    path: "{{ zsh_omp_bin_dir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+  tags: [zsh, oh-my-posh]
+
+- name: Fetch oh-my-posh checksums
+  ansible.builtin.uri:
+    url: "{{ zsh_omp_checksums_url }}"
+    return_content: true
+  register: zsh_omp_checksums
+  tags: [zsh, oh-my-posh]
+
+- name: Extract oh-my-posh checksum
+  ansible.builtin.set_fact:
+    zsh_omp_checksum: "{{ zsh_omp_checksums.content | regex_search('^([0-9a-f]{64})\\s+' ~ zsh_omp_asset_filename ~ '$', '\\1', multiline=True) }}"
+  tags: [zsh, oh-my-posh]
+
+- name: Ensure oh-my-posh checksum was located
+  ansible.builtin.assert:
+    that:
+      - zsh_omp_checksum is string
+      - zsh_omp_checksum | length == 64
+    fail_msg: "Unable to find checksum for {{ zsh_omp_asset_filename }}"
+  tags: [zsh, oh-my-posh]
+
+- name: Download oh-my-posh binary
+  ansible.builtin.get_url:
+    url: "{{ zsh_omp_asset_url }}"
+    dest: "{{ zsh_omp_bin_dir }}/oh-my-posh"
+    checksum: "sha256:{{ zsh_omp_checksum }}"
+    mode: "0755"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+  tags: [zsh, oh-my-posh]

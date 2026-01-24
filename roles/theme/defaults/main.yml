@@ -1,4 +1,4 @@
-theme_config_source_dir: "/usr/local/share/theme"
+theme_source_dir: "~/.config/theme"
 theme_name: everforest
 theme_kb_layout: us
 theme_kb_variant: intl

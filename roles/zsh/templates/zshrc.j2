@@ -1,0 +1,64 @@
+# setup zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Keybinds
+bindkey -e
+
+# History
+HISTFILE={{ zsh_source_dir }}/.histfile
+HISTSIZE=1000
+SAVEHIST=$HISTSIZE
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:z:*' fzf-preview 'ls --color $realpath'
+zstyle :compinstall filename '{{ zsh_source_dir }}/.zshrc'
+
+# load completions
+autoload -Uz compinit
+compinit
+
+# shell integrations
+source <(fzf --zsh)
+zinit light Aloxaf/fzf-tab
+eval "$(zoxide init zsh)"
+
+# Aliases
+alias grim-shot='grim -g "$(slurp)" - | swappy -f -'
+alias -- eza='eza --icons always --header --group-directories-first --git'
+alias -- la='eza -a'
+alias -- ll='eza -l'
+alias -- lla='eza -la'
+alias -- ls=eza
+alias -- lt='eza --tree'
+
+### Functions
+# change directory on exit with yazi
+function yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+# add other zinit plugins
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+
+# syntax highlighting (! must be loaded last)
+zinit light zsh-users/zsh-syntax-highlighting

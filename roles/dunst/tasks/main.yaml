@@ -1,0 +1,10 @@
+- name: Render template configurations
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "{{ dunst_source_dir }}/{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  loop:
+    - dunstrc
+  tags: [dunst, config]
