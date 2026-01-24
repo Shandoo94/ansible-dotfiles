@@ -1,0 +1,23 @@
+- name: Render template configurations for gtk-3
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "{{ gtk_3_source_dir }}/{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  loop:
+    - gtk.css
+    - settings.ini
+  tags: [gtk, config]
+
+- name: Render template configurations for gtk-4
+  ansible.builtin.template:
+    src: "{{ item }}.j2"
+    dest: "{{ gtk_4_source_dir }}/{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0600"
+  loop:
+    - gtk.css
+    - settings.ini
+  tags: [gtk, config]
