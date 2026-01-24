@@ -1,5 +1,15 @@
 - name: Create theme directory
   ansible.builtin.file:
+    path: "{{ bat_source_dir }}"
+    state: directory
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0700"
+  become: true
+  tags: [bat, config]
+
+- name: Create theme directory
+  ansible.builtin.file:
     path: "{{ bat_source_dir }}/themes"
     state: directory
     owner: "{{ ansible_facts['user_id'] }}"
