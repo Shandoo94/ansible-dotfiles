@@ -1,4 +1,4 @@
-theme_source_dir: "{{ ansible_facts['ansible_user_dir'] }}/.config/theme"
+theme_source_dir: "{{ ansible_facts['user_dir'] }}/.config/theme"
 theme_name: everforest
 theme_kb_layout: us
 theme_kb_variant: intl

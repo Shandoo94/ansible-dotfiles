@@ -1,1 +1,1 @@
-kitty_source_dir: "{{ ansible_facts['ansible_user_dir'] }}/.config/kitty"
+kitty_source_dir: "{{ ansible_facts['user_dir'] }}/.config/kitty"

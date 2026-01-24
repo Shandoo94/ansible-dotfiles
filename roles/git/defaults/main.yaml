@@ -1,1 +1,1 @@
-git_source_dir: "{{ ansible_facts['ansible_user_dir'] }}/.config/git"
+git_source_dir: "{{ ansible_facts['user_dir'] }}/.config/git"

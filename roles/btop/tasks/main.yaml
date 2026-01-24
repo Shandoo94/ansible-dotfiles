@@ -2,8 +2,8 @@
   ansible.builtin.template:
     src: system.yaml.j2
     dest: "{{ btop_source_dir }}/themes/system.theme"
-    owner: "{{ ansible_facts['ansible_user_id'] }}"
-    group: "{{ ansible_facts['ansible_user_id'] }}"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
     mode: "0600"
   tags: [btop, config]
 
@@ -11,7 +11,7 @@
   ansible.builtin.copy:
     src: btop.conf
     dest: "{{ btop_source_dir }}/btop.conf"
-    owner: "{{ ansible_facts['ansible_user_id'] }}"
-    group: "{{ ansible_facts['ansible_user_id'] }}"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
     mode: "0600"
   tags: [btop, config]

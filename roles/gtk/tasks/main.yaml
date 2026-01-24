@@ -2,8 +2,8 @@
   ansible.builtin.template:
     src: "{{ item }}.j2"
     dest: "{{ gtk_3_source_dir }}/{{ item }}"
-    owner: "{{ ansible_facts['ansible_user_id'] }}"
-    group: "{{ ansible_facts['ansible_user_id'] }}"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
     mode: "0600"
   loop:
     - gtk.css
@@ -14,8 +14,8 @@
   ansible.builtin.template:
     src: "{{ item }}.j2"
     dest: "{{ gtk_4_source_dir }}/{{ item }}"
-    owner: "{{ ansible_facts['ansible_user_id'] }}"
-    group: "{{ ansible_facts['ansible_user_id'] }}"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
     mode: "0600"
   loop:
     - gtk.css
