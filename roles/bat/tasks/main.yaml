@@ -1,3 +1,13 @@
+- name: Create theme directory
+  ansible.builtin.file:
+    path: "{{ bat_source_dir }}/themes"
+    state: directory
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0600"
+  become: true
+  tags: [bat, config]
+
 - name: Render template configurations
   ansible.builtin.template:
     src: system.tmTheme.j2

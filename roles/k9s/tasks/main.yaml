@@ -1,3 +1,13 @@
+- name: Create skins directory
+  ansible.builtin.file:
+    path: "{{ k9s_source_dir }}/skins"
+    state: directory
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0600"
+  become: true
+  tags: [k9s, config]
+
 - name: Render template configurations
   ansible.builtin.template:
     src: system.yaml.j2
