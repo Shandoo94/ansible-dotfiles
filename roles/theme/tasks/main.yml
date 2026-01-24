@@ -13,37 +13,33 @@
   ansible.builtin.file:
     dest: "{{ theme_source_dir }}"
     state: directory
-    owner: root
-    group: root
-    mode: "0755"
-  become: true
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0600"
 
 - name: Copy theme wallpaper
   ansible.builtin.copy:
     src: "{{ role_path }}/files/themes/{{ theme_name }}/wp.jpg"
     dest: "{{ theme_source_dir }}/wp.jpg"
-    owner: root
-    group: root
-    mode: "0755"
-  become: true
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0600"
 
 - name: Copy theme base16
   ansible.builtin.copy:
     src: "{{ role_path }}/files/themes/{{ theme_name }}/base16.yaml"
     dest: "{{ theme_source_dir }}/base16.yaml"
-    owner: root
-    group: root
-    mode: "0755"
-  become: true
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0600"
 
 - name: Copy theme polarity
   ansible.builtin.copy:
     src: "{{ role_path }}/files/themes/{{ theme_name }}/polarity.txt"
     dest: "{{ theme_source_dir }}/polarity"
-    owner: root
-    group: root
-    mode: "0755"
-  become: true
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0600"
 
 - name: Set theme polarity fact
   ansible.builtin.set_fact:
