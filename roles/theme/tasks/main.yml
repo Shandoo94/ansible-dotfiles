@@ -11,7 +11,7 @@
 
 - name: Create theme source directory
   ansible.builtin.file:
-    dest: "{{ theme_config_source_dir }}"
+    dest: "{{ theme_source_dir }}"
     state: directory
     owner: root
     group: root
@@ -21,7 +21,7 @@
 - name: Copy theme wallpaper
   ansible.builtin.copy:
     src: "{{ role_path }}/files/themes/{{ theme_name }}/wp.jpg"
-    dest: "{{ theme_config_source_dir }}/wp.jpg"
+    dest: "{{ theme_source_dir }}/wp.jpg"
     owner: root
     group: root
     mode: "0755"
@@ -30,7 +30,7 @@
 - name: Copy theme base16
   ansible.builtin.copy:
     src: "{{ role_path }}/files/themes/{{ theme_name }}/base16.yaml"
-    dest: "{{ theme_config_source_dir }}/base16.yaml"
+    dest: "{{ theme_source_dir }}/base16.yaml"
     owner: root
     group: root
     mode: "0755"
@@ -39,7 +39,7 @@
 - name: Copy theme polarity
   ansible.builtin.copy:
     src: "{{ role_path }}/files/themes/{{ theme_name }}/polarity.txt"
-    dest: "{{ theme_config_source_dir }}/polarity"
+    dest: "{{ theme_source_dir }}/polarity"
     owner: root
     group: root
     mode: "0755"
@@ -50,7 +50,7 @@
     theme_data:
       polarity: "{{ theme_polarity_slurp.content | b64decode | trim }}"
       colors: "{{ theme_base16 }}"
-      wallpaper_path: "{{ theme_config_source_dir }}/wp.jpg"
+      wallpaper_path: "{{ theme_source_dir }}/wp.jpg"
       kb_layout: "{{ theme_kb_layout }}"
       kb_variant: "{{ theme_kb_variant }}"
       font:
