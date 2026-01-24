@@ -8,3 +8,10 @@
   loop:
     - dunstrc
   tags: [dunst, config]
+
+- name: Enable Dunst
+  ansible.builtin.systemd_service:
+    name: dunst.service
+    enabled: true
+    state: restarted
+  tags: [dunst, systemd]

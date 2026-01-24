@@ -10,3 +10,17 @@
     - hyprland.conf
     - hyprlock.conf
   tags: [hyprland, config]
+
+- name: Enable polkitagent
+  ansible.builtin.systemd_service:
+    name: hyprpolkitagent.service
+    enabled: true
+    state: restarted
+  tags: [polkitagent, systemd]
+
+- name: Enable hypridle
+  ansible.builtin.systemd_service:
+    name: hypridle.service
+    enabled: true
+    state: restarted
+  tags: [hypridle, systemd]
