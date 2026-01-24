@@ -1,3 +1,13 @@
+- name: Create source directory
+  ansible.builtin.file:
+    path: "{{ git_source_dir }}"
+    state: directory
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0700"
+  become: true
+  tags: [git, config]
+
 - name: Copy file configurations
   ansible.builtin.copy:
     src: "{{ item }}"

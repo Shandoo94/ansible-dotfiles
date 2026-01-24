@@ -9,7 +9,7 @@
   register: theme_polarity_slurp
   changed_when: false
 
-- name: Create theme source directory
+- name: Create source directory
   ansible.builtin.file:
     dest: "{{ theme_source_dir }}"
     state: directory

@@ -1,4 +1,4 @@
-- name: Create theme directory
+- name: Create source directory
   ansible.builtin.file:
     path: "{{ btop_source_dir }}/themes"
     state: directory

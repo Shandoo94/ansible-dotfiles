@@ -1,3 +1,13 @@
+- name: Create source directory
+  ansible.builtin.file:
+    path: "{{ dunst_source_dir }}"
+    state: directory
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0700"
+  become: true
+  tags: [dunst, config]
+
 - name: Render template configurations
   ansible.builtin.template:
     src: "{{ item }}.j2"

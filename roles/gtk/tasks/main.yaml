@@ -1,3 +1,13 @@
+- name: Create source directory
+  ansible.builtin.file:
+    path: "{{ gtk_source_dir }}"
+    state: directory
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0700"
+  become: true
+  tags: [gtk, config]
+
 - name: Render template configurations for gtk-3
   ansible.builtin.template:
     src: "{{ item }}.j2"

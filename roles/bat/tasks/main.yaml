@@ -1,4 +1,4 @@
-- name: Create theme directory
+- name: Create source directory
   ansible.builtin.file:
     path: "{{ bat_source_dir }}"
     state: directory
