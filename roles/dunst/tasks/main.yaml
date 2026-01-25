@@ -44,5 +44,4 @@
     enabled: true
     state: started
     scope: user
-    daemon_reload: true
   tags: [dunst, systemd]

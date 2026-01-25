@@ -27,7 +27,6 @@
     enabled: true
     state: restarted
     scope: user
-    daemon_reload: true
   tags: [polkitagent, systemd]
 
 - name: Enable hypridle
@@ -36,5 +35,4 @@
     enabled: true
     state: restarted
     scope: user
-    daemon_reload: true
   tags: [hypridle, systemd]
