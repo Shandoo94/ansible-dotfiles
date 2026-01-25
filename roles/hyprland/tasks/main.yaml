@@ -35,4 +35,6 @@
     name: hypridle.service
     enabled: true
     state: restarted
+    scope: user
+    daemon_reload: true
   tags: [hypridle, systemd]
