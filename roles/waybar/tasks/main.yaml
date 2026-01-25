@@ -1,3 +1,11 @@
+- name: Create source directory
+  ansible.builtin.file:
+    dest: "{{ waybar_source_dir }}"
+    state: directory
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0700"
+
 - name: Render template configurations
   ansible.builtin.template:
     src: "{{ item }}.j2"
