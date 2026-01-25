@@ -99,3 +99,12 @@
     group: "{{ ansible_facts['user_id'] }}"
     mode: "0600"
   tags: [zsh, oh-my-posh, config]
+
+- name: Render template configurations
+  ansible.builtin.template:
+    src: zshenv_home.j2
+    dest: "{{ ansible_facts['user_dir'] }}/.zshenv"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0600"
+  tags: [zsh, config]
