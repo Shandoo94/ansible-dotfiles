@@ -1,0 +1,16 @@
+- name: Create source directory
+  ansible.builtin.file:
+    dest: "{{ podman_source_dir }}"
+    state: directory
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0700"
+  tags: [podman, config]
+
+- name: Activate podman socket
+  ansible.builtin.systemd_service:
+    name: podman.socket
+    enabled: true
+    state: started
+    scope: user
+  tags: [podman, systemd]

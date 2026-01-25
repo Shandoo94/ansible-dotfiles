@@ -1,0 +1,1 @@
+podman_source_dir: "{{ ansible_facts['user_dir'] }}/.config/lazydocker"
