@@ -21,8 +21,8 @@
 
 - name: Determine oh-my-posh target platform
   ansible.builtin.set_fact:
-    zsh_omp_platform: "{{ {'Linux': 'linux', 'Darwin': 'darwin', 'FreeBSD': 'freebsd'}.get(ansible_system, ansible_system | lower) }}"
-    zsh_omp_arch: "{{ {'x86_64': 'amd64', 'amd64': 'amd64', 'aarch64': 'arm64', 'arm64': 'arm64', 'armv7l': 'arm', 'armv7': 'arm', 'armv6l': 'arm', 'armv6': 'arm', 'armhf': 'arm'}.get(ansible_architecture, ansible_architecture | lower) }}"
+    zsh_omp_platform: "{{ {'Linux': 'linux', 'Darwin': 'darwin', 'FreeBSD': 'freebsd'}.get(ansible_facts['system'], ansible_facts['system'] | lower) }}"
+    zsh_omp_arch: "{{ {'x86_64': 'amd64', 'amd64': 'amd64', 'aarch64': 'arm64', 'arm64': 'arm64', 'armv7l': 'arm', 'armv7': 'arm', 'armv6l': 'arm', 'armv6': 'arm', 'armhf': 'arm'}.get(ansible_facts['userspace_architecture'], ansible_facts['userspace_architecture'] | lower) }}"
   tags: [zsh, oh-my-posh]
 
 - name: Validate oh-my-posh target support
@@ -30,7 +30,7 @@
     that:
       - zsh_omp_platform in ['linux', 'darwin', 'freebsd']
       - zsh_omp_arch in ['amd64', 'arm', 'arm64']
-    fail_msg: "Unsupported platform {{ ansible_system }} or architecture {{ ansible_architecture }} for oh-my-posh"
+    fail_msg: "Unsupported platform {{ ansible_facts['userspace_architecture'] }} or architecture {{ ansible_facts['system'] }} for oh-my-posh"
   tags: [zsh, oh-my-posh]
 
 - name: Define oh-my-posh asset details
@@ -58,7 +58,10 @@
 
 - name: Extract oh-my-posh checksum
   ansible.builtin.set_fact:
-    zsh_omp_checksum: "{{ zsh_omp_checksums.content | regex_search('^([0-9a-f]{64})\\s+' ~ zsh_omp_asset_filename ~ '$', '\\1', multiline=True) }}"
+    # regex_findall returns a list of matches.
+    # Since the regex has a capture group (), it returns a list of the captured strings.
+    # We use | first to get the string from that list.
+    zsh_omp_checksum: "{{ zsh_omp_checksums.content | regex_findall('^([0-9a-f]{64})\\s+' ~ zsh_omp_asset_filename ~ '$', multiline=True) | first }}"
   tags: [zsh, oh-my-posh]
 
 - name: Ensure oh-my-posh checksum was located
