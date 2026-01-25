@@ -19,9 +19,30 @@
     - dunstrc
   tags: [dunst, config]
 
-- name: Enable Dunst
+- name: Create systemd user directory
+  ansible.builtin.file:
+    path: "{{ dunst_systemd_source_dir }}"
+    state: directory
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0700"
+  become: true
+  tags: [dunst, config]
+
+- name: Render template configurations
+  ansible.builtin.template:
+    src: dunst.service.j2
+    dest: "{{ dunst_source_dir }}/dunst.service"
+    owner: "{{ ansible_facts['user_id'] }}"
+    group: "{{ ansible_facts['user_id'] }}"
+    mode: "0600"
+  tags: [dunst, systemd]
+
+- name: Enable dunst service
   ansible.builtin.systemd_service:
     name: dunst.service
     enabled: true
-    state: restarted
+    state: started
+    scope: user
+    daemon_reload: true
   tags: [dunst, systemd]
