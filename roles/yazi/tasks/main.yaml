@@ -5,7 +5,7 @@
     owner: "{{ ansible_facts['user_id'] }}"
     group: "{{ ansible_facts['user_id'] }}"
     mode: "0700"
-  tags: [waybar, config]
+  tags: [yazi, config]
 
 - name: Render template configurations
   ansible.builtin.template:
