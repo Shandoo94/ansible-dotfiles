@@ -1,1 +1,6 @@
 hyprland_source_dir: "{{ ansible_facts['user_dir'] }}/.config/hypr"
+
+# Time in seconds
+hyprland_screen_lock_timeout: 180
+hyprland_screen_off_timeout: 240
+hyprland_suspend_timeout: 540

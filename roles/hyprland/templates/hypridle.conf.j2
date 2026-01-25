@@ -7,17 +7,17 @@ general {
 }
 
 listener {
-    timeout = {{ desktop_hypr_screen_lock_timeout }}
+    timeout = {{ hyprland_screen_lock_timeout }}
     on-timeout = loginctl lock-session
 }
 
 listener {
-    timeout = {{ desktop_hypr_screen_off_timeout }}
+    timeout = {{ hyprland_screen_off_timeout }}
     on-timeout = hyprctl dispatch dpms off
     on-resume = hyprctl dispatch dpms on
 }
 
 listener {
-    timeout = {{ desktop_hypr_suspend_timeout }}
+    timeout = {{ hyprland_suspend_timeout }}
     on-timeout = $suspend_cmd
 }
