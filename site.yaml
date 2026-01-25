@@ -5,7 +5,6 @@
   roles:
     - theme
     - bat
-    - blueman
     - btop
     - dunst
     - git
