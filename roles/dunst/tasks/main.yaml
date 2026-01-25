@@ -32,7 +32,7 @@
 - name: Render template configurations
   ansible.builtin.template:
     src: dunst.service.j2
-    dest: "{{ dunst_source_dir }}/dunst.service"
+    dest: "{{ ansible_facts['user_dir'] }}/.config/systemd/user/dunst.service"
     owner: "{{ ansible_facts['user_id'] }}"
     group: "{{ ansible_facts['user_id'] }}"
     mode: "0600"
