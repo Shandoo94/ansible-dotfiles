@@ -18,7 +18,7 @@ blocks:
         type: git
       - foreground: p:foreground
         style: plain
-        template: "<p:accent>--[</>{{ if .Env.CONTAINER_ID }}󰆧 {{ .Env.CONTAINER_ID }}{{ end }}<p:accent>]</>"
+        template: "{{ if .Env.CONTAINER_ID }}<p:accent>--[</>󰆧 {{ .Env.CONTAINER_ID }}<p:accent>]</>{{ end }}"
         type: text
       - foreground: p:foreground
         style: plain
