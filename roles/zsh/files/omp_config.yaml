@@ -19,6 +19,7 @@ blocks:
       - foreground: p:foreground
         style: plain
         template: "<p:accent>--[</>{{ if .Env.CONTAINER_ID }}󰆧 {{ .Env.CONTAINER_ID }}{{ end }}<p:accent>]</>"
+        type: text
       - foreground: p:foreground
         style: plain
         template: "<p:accent>--[</>{{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}}<p:accent>]</>"
