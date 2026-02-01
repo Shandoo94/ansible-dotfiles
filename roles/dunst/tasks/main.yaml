@@ -37,11 +37,3 @@
     group: "{{ ansible_facts['user_id'] }}"
     mode: "0600"
   tags: [dunst, systemd]
-
-- name: Enable dunst service
-  ansible.builtin.systemd_service:
-    name: dunst.service
-    enabled: true
-    state: started
-    scope: user
-  tags: [dunst, systemd]
