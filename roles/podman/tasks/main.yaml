@@ -6,8 +6,3 @@
     group: "{{ ansible_facts['user_id'] }}"
     mode: "0700"
   tags: [podman, config]
-
-- name: Enable podman socket on host
-  command: distrobox-host-exec systemctl --user enable --now podman.socket
-  changed_when: false
-  tags: [podman, systemd]
