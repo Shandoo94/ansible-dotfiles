@@ -7,9 +7,7 @@
     mode: "0700"
   tags: [podman, config]
 
-- name: Activate podman socket
-  ansible.builtin.systemd_service:
-    name: podman.socket
-    enabled: true
-    scope: user
+- name: Enable podman socket on host
+  command: distrobox-host-exec systemctl --user enable --now podman.socket
+  changed_when: false
   tags: [podman, systemd]
